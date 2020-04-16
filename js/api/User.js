@@ -120,19 +120,6 @@ User.login(newData, testF);
 
 User.logout(newData, testF)
 
-// User.register(newData, (e, response) => {
-//   console.log('response', response);
-
-//   if (response.error) {
-//     console.log('error', response.error);
-//   }
-//   else if (response.success) {
-//     console.log('success');
-//     User.setCurrent(newData);
-//   }
-// })
-
-console.log(User.current());
 
 
 // User.setCurrent( user );
