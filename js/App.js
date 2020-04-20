@@ -30,7 +30,7 @@ class App {
    * Если пользователь не авторизован, необходимо установить
    * состояние 'init'
    * */
-  static initUser() {
+  static initUser() {    
     User.fetch(User.current(), () =>
       this.setState( User.current() ? 'user-logged' : 'init' )
     );
@@ -74,7 +74,7 @@ class App {
    * Инициализирует формы
    * */
   static initForms() {
-    this.forms = {
+    this.forms = {      
       login: new LoginForm(document.querySelector('#login-form')),
       register: new RegisterForm(document.querySelector('#register-form')),
       createAccount: new CreateAccountForm(document.querySelector('#new-account-form')),

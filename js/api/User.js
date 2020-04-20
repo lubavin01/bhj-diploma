@@ -94,31 +94,31 @@ class User {
   }
 }
 
-const newData = {
-  name: 'Nikola',
-  email: 'testo_test001@test123.ru',
-  password: 'abracadabra'
-}
+// const newData = {
+//   name: 'Nikola',
+//   email: 'testo_test001@test123.ru',
+//   password: 'abracadabra'
+// }
 
-const testF = (e, response) => {
-  console.log('response', response);
+// const testF = (e, response) => {
+//   console.log('response', response);
 
-  if (response.error) {
-    console.log('error', response.error);
-  }
-  else if (response.success) {
-    console.log('success');
-    if (response.user) {
-      User.setCurrent(response.user);
-    }
-  }
+//   if (response.error) {
+//     console.log('error', response.error);
+//   }
+//   else if (response.success) {
+//     console.log('success');
+//     if (response.user) {
+//       User.setCurrent(response.user);
+//     }
+//   }
 
-  console.log('current', User.current());
-}
+//   console.log('current', User.current());
+// }
 
-User.login(newData, testF);
+// User.login(newData, testF);
 
-User.logout(newData, testF)
+// User.logout(newData, testF)
 
 
 
