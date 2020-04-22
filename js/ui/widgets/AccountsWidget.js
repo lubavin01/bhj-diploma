@@ -38,10 +38,11 @@ class AccountsWidget {
       modal.open();
     });
 
-    const accounts = this.element.querySelectorAll('.account');
-    [...accounts].forEach((i) => {
-      i.addEventListener('click', (e) => { AccountsWidget.onSelectAccount(e.target) });
-    });
+    this.element.addEventListener('click', (e) => {
+      if (!e.target.matches('.account')) {return};
+
+      AccountsWidget.onSelectAccount(e.target);
+    });    
   }
 
   /**
@@ -58,8 +59,27 @@ class AccountsWidget {
 
     const currentUser = User.current();
     if (currentUser) {
+      const {id, name, email} = currentUser;
+      const currentUserData = {id, name, email};
       Account.list(currentUser, (error, response) => {
-        console.log(response);
+
+        //const sideBar = this.element.query
+        let accountsHTML = '';
+        if (response.success) {
+          response.data.forEach((i) => {
+            accountsHTML +=
+              `<li class="account" data-accountid=${i.id}>
+                <a href="#">
+                  <span>${i.name}</span> /
+                  <span>${i.sum} ₽</span>
+                </a>
+              </li>`;
+
+          });
+
+          this.element.insertAdjacentHTML('beforeend', accountsHTML);
+        }
+
       });
     }
 
