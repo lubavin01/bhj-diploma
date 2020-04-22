@@ -12,7 +12,26 @@ class RegisterForm extends AsyncForm {
    * */
   onSubmit( options ) {
 
-    User.register(this.element.getData());
+    User.register(options, (error, response) => {
+
+      if (error) {
+        console.error(error);
+        return;
+      }
+
+      if (response.error) {
+        console.error(response.error);
+        return;
+      }      
+
+      App.getModal('register').close();
+
+      User.setCurrent(options);
+
+      App.setState('user-logged');      
+    });
+    
+    
 
   }
 }

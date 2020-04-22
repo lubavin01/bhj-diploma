@@ -12,6 +12,12 @@ class UserWidget {
    * */
   constructor( element ) {
 
+    if (!element) {
+      throw error('not defined element');
+    }
+
+    this.element = element;
+
   }
 
   /**
@@ -22,6 +28,12 @@ class UserWidget {
    * авторизованного пользователя
    * */
   update() {
+
+    const currentUser = User.current();
+    if (currentUser) {
+      const userName = document.querySelector('.user-name');
+      userName.textContent = currentUser.email;
+    }
 
   }
 }

@@ -32,11 +32,9 @@ class Modal {
     const buttonsList = this.element.querySelectorAll("*[data-dismiss='modal']");
 
     buttonsList.forEach(i => {
-      i.addEventListener('click', () => { 
-        console.log('button click');
+      i.addEventListener('click', () => {         
         this.onClose();
-      });
-      console.log('listener', i);
+      });     
     });
   }
 

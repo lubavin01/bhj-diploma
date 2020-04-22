@@ -15,7 +15,7 @@ class Entity {
    * */
   static list(data, callback = f => f) {
 
-    createRequest({ method: 'GET', url: this.HOST + 'user', data: data, callback: callback, responseType: 'json' });
+    createRequest({ method: 'GET', url: this.HOST + this.URL, data: data, callback: callback, responseType: 'json' });
 
   }
 

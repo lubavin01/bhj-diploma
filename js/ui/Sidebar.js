@@ -52,7 +52,9 @@ class Sidebar {
     registerButton.addEventListener('click', () => {
       const registerForm = App.getModal('register');
       registerForm.open();
-    }); 
+    });
+
+    // const document. 
     
   }
 
