@@ -104,7 +104,7 @@ class AccountsWidget {
     [...accounts].forEach((i) => { i.classList.remove('active') });
 
     element.classList.add('active');
-
+    
     App.showPage('transactions', { accountid: element.dataset.accountid });
   }
 

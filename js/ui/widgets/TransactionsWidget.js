@@ -34,5 +34,11 @@ class TransactionsWidget {
       modal.open();
     });
 
+    const expenseBtn = this.element.querySelector('.create-expense-button');    
+    expenseBtn.addEventListener('click', (e) => {
+      const modal = App.getModal('newExpense');
+      modal.open();
+    });
+
   }
 }
