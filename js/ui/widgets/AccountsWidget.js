@@ -66,16 +66,22 @@ class AccountsWidget {
 
       Account.list(currentUserData, (error, response) => {
 
-        this.clear();
-        
+
+
         if (response.success) {
+          this.clear();
+
           response.data.forEach((i) => {
+            const newElement = this.renderItem(i);
 
-            this.renderItem(i);
+            if (this.activeAccountId && i.id === this.activeAccountId) {
+              newElement.classList.add('active');
+              App.showPage('transactions', { accountid: newElement.dataset.accountid });
 
-          } );
+            }
+          });
         }
-      } );
+      });
     }
 
   }
@@ -87,7 +93,7 @@ class AccountsWidget {
    * */
   clear() {
 
-    [...this.element.querySelectorAll('.account')].forEach( i => i.remove() );
+    [...this.element.querySelectorAll('.account')].forEach(i => i.remove());
 
   }
 
@@ -103,8 +109,9 @@ class AccountsWidget {
     const accounts = this.element.querySelectorAll('.account');
     [...accounts].forEach((i) => { i.classList.remove('active') });
 
+    this.activeAccountId = element.dataset.accountid;
+
     element.classList.add('active');
-    
     App.showPage('transactions', { accountid: element.dataset.accountid });
   }
 
@@ -124,15 +131,32 @@ class AccountsWidget {
             `);
   }
 
+  getAccountInnerHTML(item) {
+
+    return (`<a href="#">
+                <span>${item.name}</span> /
+                <span>${item.sum} ₽</span>
+            </a>            
+            `);
+  }
+
   /**
    * Получает массив с информацией о счетах.
    * Отображает полученный с помощью метода
    * AccountsWidget.getAccountHTML HTML-код элемента
    * и добавляет его внутрь элемента виджета
    * */
-  renderItem(item) {
+  renderItem(item) {    
+    const newItem = document.createElement('li');
+    newItem.innerHTML = this.getAccountInnerHTML(item);
+    newItem.classList.add('account');
+    newItem.dataset.accountid = item.id;
 
-    this.element.insertAdjacentHTML('beforeend', this.getAccountHTML(item));
+    this.element.append(newItem);
+
+    return newItem;
+
+    // this.element.insertAdjacentHTML('beforeend', this.getAccountHTML(item));
 
   }
 }
